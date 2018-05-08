@@ -1,0 +1,82 @@
+﻿body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    height: 100%;
+    position: relative;
+}
+#sidebar {
+    height: 100%;
+    line-height: 35px;
+    padding: 10px 10px 30px 10px;
+    text-align: left;
+    width: 340px;
+    min-height: 700px;
+    position: fixed;
+    background: #333333;
+    opacity: 0.9;
+    left: 0;
+    /*left: -370px;*/
+    transition: all 0.5s;
+    z-index: 2;
+}
+#sidebar.active {
+    left: -370px;
+}
+.sidebar-toggle-btn {
+    position: absolute;
+    left: 380px;
+    top: 20px;
+}
+.icon_menu {
+    width:40px;
+    cursor:pointer;
+}
+h1 {
+    color: #fff;
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    text-align: center;
+}
+.sidebar-label {
+
+}
+.sidebar-nav {
+
+}
+.sidebar-input {
+    width: 300px;
+    height: 30px;
+    border-radius: 6px;
+    border: 0;
+    padding-left: 10px;
+    outline: none;
+    margin-left: 14px;
+}
+.sidebar-ul {
+    list-style: none;
+    color: #fff;
+    padding: 20px 25px 20px 20px;
+}
+.sidebar-ul a {
+    text-decoration:none;
+    color:#fff;
+}
+.sidebar-ul a:hover {
+    text-decoration: none;
+    color: #3296FA;
+}
+.result {
+    border-bottom: 1px solid #fff;
+    cursor: pointer;
+}
+.map {
+    bottom: 0px;
+    height: 100%;
+    left: 362px;
+    position: absolute;
+    right: 0px;
+    overflow: hidden;
+}
