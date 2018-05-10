@@ -3,9 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <title>Map</title>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link href="css/map.css" rel="stylesheet" />
+    <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    
+        #map {
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,10 +28,11 @@
             <h1>地图搜索中心</h1>
             <label class="sidebar-label" for="drawer-toggle" id="drawer-toggle-label"></label>
             <nav class="sidebar-nav" id="drawer">
-                <input data-bind="textInput: filterText" class="sidebar-input" type="text" id="filterInput" placeholder="请输入地名..." />
-                <ul class="sidebar-ul" id="filter" data-bind="foreach: places">
+                <input class="sidebar-input" type="text" id="filterInput" data-bind="textInput: filterText" placeholder="请输入地名..." />
+                <ul class="sidebar-ul" id="filter" data-bind="foreach: filteredList">
                     <a href="#"><li class="result" data-bind="text: title"></li></a>
-                    <!-- <a href="#"><li class="result">漳州</li></a>
+                    <!-- <a href="#"><li class="result">泉州</li></a>
+                    <a href="#"><li class="result">漳州</li></a>
                     <a href="#"><li class="result">厦门</li></a>
                     <a href="#"><li class="result">福州</li></a>
                     <a href="#"><li class="result">莆田</li></a> -->
@@ -27,25 +40,25 @@
             </nav>
         </div>
 
-        <div class="map" id="container" tabindex="0"></div>
+        <div class="map" id="map"></div>
     </div>
 
     <script src="js/sidebar.js"></script>
     <script src="js/map.js" defer="defer"></script>
     <script src="js/knockout-3.4.2.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <!-- 高德地图 -->
-    <!-- <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.6&key=b3c3e12fe3477bb47b006e73b69e2eb5"></script>
-    <script type="text/javascript">
-        var map = new AMap.Map('container',{
-            resizeEnable: true,
-            zoom: 10,
-            center: [116.480983, 40.0958]
-        });
-    </script> -->
-    <!-- 高德地图 结束 -->
-    <!-- google 地图 -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB94iTPXlrN7dprBW4wV20PBtgYKuvwvEQ&v=3&callback=initMap"></script>
-    <!-- google 地图 结束 -->
+    <script>
+        // var map;
+        // function initMap() {
+        //     // Constructor creates a new map - only center and zoom are required.
+        //     map = new google.maps.Map(document.getElementById('map'), {
+        //         center: {lat: 40.7413549, lng: -73.9980244},
+        //         zoom: 13
+        //     });
+        // }
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB94iTPXlrN7dprBW4wV20PBtgYKuvwvEQ&v=3&callback=initMap">
+    </script>
 </body>
 </html>

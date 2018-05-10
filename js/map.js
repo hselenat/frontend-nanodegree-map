@@ -1,60 +1,86 @@
-﻿// var map;
-// function initMap() {
-//     // Constructor creates a new map - only center and zoom are required.
-//     map = new google.maps.Map(document.getElementById('map'), {
-//         center: { lat: 40.7413549, lng: -73.9980244 },
-//         zoom: 13
-//     });
-// }
-//高德地图
-// var map = new AMap.Map('map', {
-//     resizeEnable: true,
-//     zoom:11,
-//     center: [116.397428, 39.90923]
-// });
-//输入框测试
-// var filterText = ko.observable("");
+﻿var filterText = ko.observable("");
+var map;
+var infoWindow;
 
-// var test = ko.computed(function(){
-//     console.log("输入框发生变化，当前输入为："+ filterText());
-// });
-
-// ko.applyBindings ();
-var filterText = ko.observable("");
-
-var placesDate = [{
-        position:{ lat: 21.023418, lng: 105.8516438 },
-        title: "vietnames"
+var placesData = [
+    {
+        title: 'Empire State Building', 
+        position: { lat: 40.7390637, lng: -73.994297 }
     },
     {
-        position:{ lat: 21.030708, lng: 105.852405 },
-        title: "hoan"
+        title: 'Washington Square Park', 
+        position: {lat: 40.7390637, lng: -73.994297}
     },
     {
-        position:{ lat: 21.035302, lng: 105.849257 },
-        title: "old"
+        title: 'Lincoln Center for the Performing Arts', 
+        position: {lat: 40.7385434, lng: -74.0049401}
     },
     {
-        position:{ lat: 21.036713, lng: 105.834731 },
-        title: "mausoleum"
+        title: 'Museum of the Moving Image', 
+        position: {lat: 40.7390637, lng: -73.9858856}
     },
     {
-        position:{ lat: 21.047953, lng: 105.836979 },
-        title: "pagoda"
+        title: 'Manhattan Bridge', 
+        position: {lat: 40.7386735, lng: -74.0131798}
+    },
+    {
+        title: 'East River State Park', 
+        position: {lat: 40.7360721, lng: -74.0032234}
     }
 ];
 
+
 var Place = function(data) {
-    this.title = data.title;
-    this.position = data.position;
+    var self = this;
+    this.title = data.title;//定义地名
+    this.position = data.position;//定义位置
+    this.visiable = ko.computed(function(){
+        var filter = filterText().toLowerCase();
+        var placeName = self.title;
+        if(placeName.indexOf(filter) == -1){
+            return false;
+        } else {
+            return true;
+        }
+    });
+    //红色标记
+    this.marker = new google.maps.marker({
+        position: self.position,
+        title: self.title,
+        animation: google.maps.Animation.DROP
+    });
 }
 
 var ViewModel = function() {
     var self = this;
-    this.Places = [];
-    placesDate.forEach(function(data){
-        self.Places.push(new Place(data));
-    })
+    this.placeList = [];//定义一个空数组的地址列表
+    placesData.forEach(function(data){
+        self.placeList.push(new Place(data));
+    });
+    //过滤地址列表
+    this.filteredList = ko.computed(function(){
+        var resultArray = [];
+        self.placeList.forEach(function(place){
+            if (place.visiable()) {
+                resultArray.push(place);
+                place.marker.setMap(map, place.position);
+            } else {
+                place.marker.setMap(null);
+            }
+        });
+
+        return resultArray;
+    });
 }
 
-ko.applyBindings (ViewModel);
+//初始化地图
+function initMap() {
+    // Constructor creates a new map - only center and zoom are required.
+    map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 40.7390637, lng: -73.994297},
+        zoom: 13
+    });
+    infoWindow = new google.maps.infoWindow();
+    //将数据绑定到页面中
+    ko.applyBindings(new ViewModel());
+}
