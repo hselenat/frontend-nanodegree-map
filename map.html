@@ -30,7 +30,7 @@
             <nav class="sidebar-nav" id="drawer">
                 <input class="sidebar-input" type="text" id="filterInput" data-bind="textInput: filterText" placeholder="请输入地名..." />
                 <ul class="sidebar-ul" id="filter" data-bind="foreach: filteredList">
-                    <a href="#"><li class="result" data-bind="text: title"></li></a>
+                    <a href="#"><li class="result" data-bind="text: title,click: mapClick"></li></a>
                     <!-- <a href="#"><li class="result">泉州</li></a>
                     <a href="#"><li class="result">漳州</li></a>
                     <a href="#"><li class="result">厦门</li></a>
@@ -47,18 +47,8 @@
     <script src="js/map.js" defer="defer"></script>
     <script src="js/knockout-3.4.2.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        // var map;
-        // function initMap() {
-        //     // Constructor creates a new map - only center and zoom are required.
-        //     map = new google.maps.Map(document.getElementById('map'), {
-        //         center: {lat: 40.7413549, lng: -73.9980244},
-        //         zoom: 13
-        //     });
-        // }
-    </script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB94iTPXlrN7dprBW4wV20PBtgYKuvwvEQ&v=3&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB94iTPXlrN7dprBW4wV20PBtgYKuvwvEQ&v=3&callback=initMap" onerror="googleError()">
     </script>
 </body>
 </html>

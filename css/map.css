@@ -1,8 +1,14 @@
 ﻿body {
-    font-family: Arial, sans-serif;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     height: 100%;
     margin: 0;
     padding: 0;
+}
+h1 {
+    color: #fff;
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    text-align: center;
 }
 .container {
     height: 100%;
@@ -24,28 +30,16 @@
     z-index: 2;
 }
 #sidebar.active {
-    left: -280px;
+    left: 0px;
 }
 .sidebar-toggle-btn {
     position: absolute;
     left: 290px;
-    top: 60px;
+    top: 90px;
 }
 .icon_menu {
     width:30px;
     cursor:pointer;
-}
-h1 {
-    color: #fff;
-    font-size: 22px;
-    margin: 0 0 10px 0;
-    text-align: center;
-}
-.sidebar-label {
-
-}
-.sidebar-nav {
-
 }
 .sidebar-input {
     width: 220px;
@@ -83,4 +77,10 @@ h1 {
     position: absolute;
     right: 0px;
     overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+    #sidebar.active {
+        left: -280px;
+    }
 }
